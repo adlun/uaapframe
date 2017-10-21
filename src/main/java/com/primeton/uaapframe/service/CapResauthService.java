@@ -47,13 +47,13 @@ public class CapResauthService {
 			logger.info("批次号:"+batchnum+" 系统:"+map.get("systemid")+" 同步数量:"+data.size());
 			String json = JSON.toJSONString(data);
 			System.out.println(json);
-			String result = RemoteServiceUtil.post("http://127.0.0.1:8080/default/rest/services/RoleService/addRole", json);
+			String result = RemoteServiceUtil.post("http://127.0.0.1:8080/default/rest/services/sync/capresauth", json);
 			System.out.println(result);
 			JSONObject o = (JSONObject) JSON.parse(result);
-			if("fail".equals(o.get("status"))){
-				map.put("status", "0");
-			}else{
+			if("success".equals(o.get("status"))){
 				map.put("status", "2");
+			}else{
+				map.put("status", "0");
 			}
 			session.update("com.primeton.uaapframe.mapper.CapResauthMapper.updateStatus",map);
 			session.commit();

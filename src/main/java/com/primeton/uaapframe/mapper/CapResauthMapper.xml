@@ -27,7 +27,7 @@
     		select party_id,party_type,res_id,res_type,tenant_id,res_state,party_scope,
     		createuser,date_format(createtime,"%Y-%m-%d %H:%i:%s") as createtime,status,
     		type,date_format(updatetime,"%Y-%m-%d %H:%i:%s") as updatetime,batch
-    		from cap_resauth_tmp where batch=#{batchnum} order by updatetime desc
+    		from cap_resauth_tmp where batch=#{batchnum} order by updatetime asc
     	]]> 
     </select>
     
